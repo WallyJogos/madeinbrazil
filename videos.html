@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vídeos | Made in Brazil</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+    .search-box{
+display:flex;
+justify-content:center;
+margin-bottom:35px;
+}
+
+.search-box input{
+width:100%;
+max-width:600px;
+padding:18px 25px;
+border-radius:16px;
+border:1px solid rgba(255,223,0,.15);
+background:#111;
+color:white;
+font-size:1rem;
+outline:none;
+transition:.3s;
+}
+
+.search-box input:focus{
+border-color:#FFDF00;
+box-shadow:
+0 0 20px rgba(255,223,0,.15),
+0 0 30px rgba(0,153,57,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#050505;color:#fff}
+.topbar{
+display:flex;justify-content:space-between;align-items:center;
+padding:18px 40px;background:#080808;border-bottom:1px solid rgba(255,223,0,.15)
+}
+.logo{width:90px;height:auto}
+.btn{
+padding:14px 28px;border-radius:14px;text-decoration:none;font-weight:700;
+background:linear-gradient(45deg,#009739,#FFDF00);color:#000;transition:.3s
+}
+.btn:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(255,223,0,.5)}
+.hero{
+padding:80px 20px;text-align:center;
+background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85))
+}
+.hero h1{
+font-family:Cinzel,serif;font-size:4rem;
+background:linear-gradient(90deg,#009739,#FFDF00,#002776);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent
+}
+.hero p{margin-top:15px;opacity:.8}
+.section{padding:50px 6%}
+.section h2{margin-bottom:25px;color:#FFDF00;font-family:Cinzel,serif}
+.carousel-wrap{display:flex;align-items:center;gap:12px}
+.arrow{
+width:48px;height:48px;border:none;border-radius:50%;
+background:linear-gradient(45deg,#009739,#FFDF00);
+font-size:20px;font-weight:bold;cursor:pointer
+}
+.track{
+display:flex;
+gap:20px;
+overflow-x:auto;
+scroll-behavior:smooth;
+scrollbar-width:none;
+flex:1;
+}
+.track::-webkit-scrollbar{display:none}
+.card{
+min-width:340px;
+max-width:340px;
+
+background:linear-gradient(
+180deg,
+#151515,
+#0b0b0b
+);
+
+border-radius:18px;
+overflow:hidden;
+
+cursor:pointer;
+transition:.3s;
+
+border:1px solid rgba(255,223,0,.08);
+}
+
+.card:hover{
+
+transform:
+translateY(-6px)
+scale(1.02);
+
+box-shadow:
+0 0 20px rgba(0,153,57,.25),
+0 0 30px rgba(255,223,0,.10);
+
+border-color:
+rgba(255,223,0,.25);
+
+}
+.card:hover{transform:translateY(-6px)}
+.thumb{position:relative}
+.thumb img{width:100%;height:220px;object-fit:cover;display:block}
+.play{
+position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+width:72px;height:72px;border-radius:50%;
+background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;
+font-size:28px;color:#FFDF00
+}
+.time{
+position:absolute;bottom:10px;right:10px;background:#000;
+padding:5px 10px;border-radius:8px;font-size:.8rem
+}
+.card h3{padding:16px;color:#FFDF00}
+.modal{
+display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);
+z-index:9999;align-items:center;justify-content:center;padding:20px
+}
+.modal-content{
+width:min(1400px,95vw);
+height:90vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.modal video{
+max-width:100%;
+max-height:90vh;
+width:auto;
+height:auto;
+border-radius:18px;
+background:black;
+box-shadow:0 0 40px rgba(255,223,0,.15);
+}
+.close{
+position:absolute;top:20px;right:25px;font-size:42px;cursor:pointer
+}
+footer{text-align:center;padding:30px;border-top:1px solid rgba(255,223,0,.1)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+<a href="index.html"><img src="public/Made.png" class="logo"></a>
+<a href="inicio.html" class="btn">Voltar</a>
+</header>
+
+<section class="hero">
+<h1>Biblioteca de Vídeos</h1>
+<p>Tutoriais, MVPs, WoE e conteúdos exclusivos da Made in Brazil.</p>
+</section>
+
+<section class="section">
+<h2>🎥 Conteúdo da Guilda</h2>
+<div class="search-box">
+
+<input
+type="text"
+id="searchVideos"
+placeholder="Pesquisar vídeos..."
+onkeyup="searchVideos()">
+
+</div>
+<div class="carousel-wrap">
+<button class="arrow" onclick="track.scrollBy({left:-500,behavior:'smooth'})">❮</button>
+
+<div class="track" id="track">
+
+<div class="card" onclick="openVideo('videos/kvm1.mp4')">
+<div class="thumb">
+<img src="thumbs/kvm1.png">
+<div class="play">▶</div>
+<div class="time">12:45</div>
+</div>
+<h3>Guia Completo de WoE</h3>
+</div>
+
+<div class="card" onclick="openVideo('videos/video2.mp4')">
+<div class="thumb">
+<img src="thumbs/video2.png">
+<div class="play">▶</div>
+<div class="time">08:22</div>
+</div>
+<h3>MVP Thanatos</h3>
+</div>
+
+<div class="card" onclick="openVideo('videos/video3.mp4')">
+<div class="thumb">
+<img src="thumbs/video3.png">
+<div class="play">▶</div>
+<div class="time">15:18</div>
+</div>
+<h3>Build Arcebispo</h3>
+</div>
+
+<div class="card" onclick="openVideo('videos/video4.mp4')">
+<div class="thumb">
+<img src="thumbs/video4.png">
+<div class="play">▶</div>
+<div class="time">09:51</div>
+</div>
+<h3>Progressão de Equipamentos</h3>
+</div>
+
+</div>
+
+<button class="arrow" onclick="track.scrollBy({left:500,behavior:'smooth'})">❯</button>
+</div>
+</section>
+
+<div class="modal" id="modal">
+<span class="close" onclick="closeVideo()">×</span>
+<div class="modal-content">
+<video id="player" controls autoplay>
+<source src="">
+</video>
+</div>
+</div>
+
+<footer>© 2026 Made in Brazil • Ragnarok X Next Generation</footer>
+
+<script>
+const modal=document.getElementById('modal');
+const player=document.getElementById('player');
+
+function openVideo(src){
+ player.src=src;
+ modal.style.display='flex';
+ player.play();
+}
+
+function closeVideo(){
+ player.pause();
+ player.src='';
+ modal.style.display='none';
+}
+
+modal.addEventListener('click',e=>{
+ if(e.target===modal) closeVideo();
+});
+function searchVideos(){
+
+const value =
+document
+.getElementById("searchVideos")
+.value
+.toLowerCase();
+
+const cards =
+document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+const title =
+card.querySelector("h3")
+.textContent
+.toLowerCase();
+
+card.style.display =
+title.includes(value)
+? "block"
+: "none";
+
+});
+
+}
+</script>
+
+</body>
+</html>
