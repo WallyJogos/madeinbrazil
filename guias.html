@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guias | Made in Brazil</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Poppins,sans-serif;
+background:#050505;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* HEADER */
+.topbar{
+position:sticky;
+top:0;
+z-index:1000;
+display:flex;
+justify-content:flex-end;
+padding:14px 40px;
+background:rgba(10,10,10,.55);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,223,0,.08);
+}
+
+.btn{
+padding:14px 28px;
+border-radius:14px;
+text-decoration:none;
+font-weight:700;
+background:linear-gradient(45deg,#009739,#FFDF00);
+color:#000;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 25px rgba(255,223,0,.3);
+}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:60px 20px 30px;
+}
+
+.hero h1{
+font-family:Cinzel,serif;
+font-size:3.5rem;
+background:linear-gradient(90deg,#009739,#FFDF00,#002776);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{opacity:.8;margin-top:10px}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+padding:30px 6%;
+}
+
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+/* CARD */
+.card{
+background:#111;
+border-radius:16px;
+padding:25px;
+cursor:pointer;
+transition:.3s;
+border:1px solid rgba(255,255,255,.06);
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+background:radial-gradient(circle at top, rgba(255,223,0,.08), transparent 60%);
+opacity:0;
+transition:.3s;
+}
+
+.card:hover::before{opacity:1}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:#FFDF00;
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+
+.card h3{
+color:#FFDF00;
+margin-bottom:8px;
+font-family:Cinzel;
+}
+
+.card p{
+opacity:.8;
+font-size:.9rem;
+}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.88);
+backdrop-filter:blur(6px);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.modal-box{
+width:min(900px,92vw);
+max-height:85vh;
+overflow:auto;
+background:#111;
+border:1px solid rgba(255,223,0,.15);
+border-radius:20px;
+padding:25px;
+animation:pop .25s ease;
+}
+
+@keyframes pop{
+from{transform:scale(.9);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+/* HEADER MODAL */
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.modal-header h2{
+font-family:Cinzel;
+color:#FFDF00;
+}
+
+.close{
+font-size:28px;
+cursor:pointer;
+color:#fff;
+}
+
+/* SUBCARDS */
+.subgrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.subcard{
+background:#0d0d0d;
+border:1px solid rgba(255,255,255,.06);
+border-radius:14px;
+padding:18px;
+cursor:pointer;
+transition:.25s;
+}
+
+.subcard:hover{
+transform:scale(1.04);
+border-color:#FFDF00;
+box-shadow:0 0 15px rgba(255,223,0,.15);
+}
+
+.subcard h4{
+color:#FFDF00;
+margin-bottom:6px;
+font-family:Cinzel;
+}
+
+.subcard p{
+font-size:.85rem;
+opacity:.8;
+}
+
+/* DETAIL */
+.detail{
+margin-top:18px;
+padding:15px;
+border-radius:12px;
+background:#0a0a0a;
+border:1px solid rgba(255,255,255,.05);
+white-space:pre-line;
+display:none;
+color:#ddd;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+<a href="index.html" class="btn">← Voltar</a>
+</header>
+
+<section class="hero">
+<h1>Guias da Guilda</h1>
+<p>Encantos, Pets, Builds e Sistemas do jogo</p>
+</section>
+
+<div class="grid">
+
+<div class="card" onclick="openModal('encantos')">
+<h3>✨ Encantos</h3>
+<p>Sistema de upgrade e otimização</p>
+</div>
+
+<div class="card" onclick="openModal('pets')">
+<h3>🐾 Pets</h3>
+<p>Captura e evolução de pets</p>
+</div>
+
+<div class="card" onclick="openModal('builds')">
+<h3>⚔️ Builds</h3>
+<p>Configurações PvE / PvP</p>
+</div>
+
+<div class="card" onclick="openModal('equip')">
+<h3>🛡️ Equipamentos</h3>
+<p>Progressão e refinamento</p>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box">
+
+<div class="modal-header">
+<h2 id="title"></h2>
+<span class="close" onclick="closeModal()">×</span>
+</div>
+
+<div class="subgrid" id="content"></div>
+
+<div class="detail" id="detail"></div>
+
+</div>
+</div>
+
+<script>
+
+const data = {
+encantos:{
+title:"✨ Encantos",
+items:[
+{t:"Encanto ATK",d:"Focado em dano físico e PvE."},
+{t:"Encanto CRIT",d:"Aumenta chance de crítico e burst damage."},
+{t:"Encanto Mágico",d:"Aumenta dano mágico e SP scaling."}
+]
+},
+
+pets:{
+title:"🐾 Pets",
+items:[
+{t:"Pet DPS",d:"Aumenta dano geral e performance em MVP."},
+{t:"Pet Tank",d:"Reduz dano recebido e aumenta sobrevivência."},
+{t:"Pet Suporte",d:"Buffs passivos para party e guilda."}
+]
+},
+
+builds:{
+title:"⚔️ Builds",
+items:[
+{t:"PvE Build",d:"Foco em farm, instâncias e MVP."},
+{t:"PvP Build",d:"Arena, guerra e burst damage."},
+{t:"Hybrid",d:"Equilíbrio entre dano e sobrevivência."}
+]
+},
+
+equip:{
+title:"🛡️ Equipamentos",
+items:[
+{t:"Armas",d:"Principal fonte de dano, prioridade máxima."},
+{t:"Armadura",d:"Defesa e resistência contra mobs e players."},
+{t:"Refino",d:"Aumenta stats gerais e poder total."}
+]
+}
+};
+
+const modal=document.getElementById("modal");
+const title=document.getElementById("title");
+const content=document.getElementById("content");
+const detail=document.getElementById("detail");
+
+let currentKey = "";
+
+function openModal(key){
+
+currentKey = key;
+const g = data[key];
+
+title.innerText = g.title;
+
+content.innerHTML = g.items.map((i,idx)=>`
+<div class="subcard" onclick="showDetail(${idx})">
+<h4>${i.t}</h4>
+<p>Clique para ver detalhes</p>
+</div>
+`).join("");
+
+detail.style.display="none";
+detail.innerText="";
+
+modal.style.display="flex";
+}
+
+function showDetail(i){
+const item = data[currentKey].items[i];
+
+detail.style.display="block";
+detail.innerText = item.t + "\n\n" + item.d;
+}
+
+function closeModal(){
+modal.style.display="none";
+}
+
+modal.addEventListener("click",(e)=>{
+if(e.target===modal) closeModal();
+});
+
+</script>
+
+</body>
+</html>

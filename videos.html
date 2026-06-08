@@ -4,264 +4,376 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vídeos | Made in Brazil</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-    .search-box{
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Poppins,sans-serif;
+background:#050505;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* HEADER FIXADO (PADRÃO IGUAL OUTRAS PÁGINAS) */
+.topbar{
+position:sticky;
+top:0;
+z-index:1000;
+
+display:flex;
+justify-content:flex-end; /* 🔥 botão no canto direito */
+align-items:center;
+
+padding:14px 40px;
+
+background:rgba(10,10,10,.55);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,223,0,.08);
+}
+
+/* BOTÃO PADRÃO */
+.btn{
+padding:14px 28px;
+border-radius:14px;
+text-decoration:none;
+font-weight:700;
+background:linear-gradient(45deg,#009739,#FFDF00);
+color:#000;
+transition:.3s;
+display:inline-block;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 25px rgba(255,223,0,.3);
+}
+
+/* HERO */
+.hero{
+padding:50px 20px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-family:Cinzel,serif;
+font-size:3.5rem;
+background:linear-gradient(90deg,#009739,#FFDF00,#002776);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 20px rgba(255,223,0,.1);
+}
+
+.hero p{
+opacity:.8;
+margin-top:10px;
+}
+
+/* CATEGORIAS */
+.categories{
 display:flex;
 justify-content:center;
-margin-bottom:35px;
+gap:10px;
+margin:25px 0;
+flex-wrap:wrap;
+}
+
+.cat{
+padding:8px 14px;
+border-radius:20px;
+background:#111;
+border:1px solid rgba(255,255,255,.08);
+cursor:pointer;
+font-size:.85rem;
+transition:.3s;
+}
+
+.cat:hover{
+border-color:#FFDF00;
+transform:translateY(-2px);
+}
+
+.cat.active{
+background:rgba(255,223,0,.15);
+border-color:#FFDF00;
+color:#FFDF00;
+}
+
+/* SEARCH */
+.search-box{
+display:flex;
+justify-content:center;
+margin:15px 0 30px;
 }
 
 .search-box input{
 width:100%;
 max-width:600px;
-padding:18px 25px;
-border-radius:16px;
-border:1px solid rgba(255,223,0,.15);
-background:#111;
-color:white;
-font-size:1rem;
+padding:14px 18px;
+border-radius:12px;
+background:#0f0f0f;
+border:1px solid rgba(255,223,0,.1);
+color:#fff;
 outline:none;
-transition:.3s;
 }
 
-.search-box input:focus{
-border-color:#FFDF00;
-box-shadow:
-0 0 20px rgba(255,223,0,.15),
-0 0 30px rgba(0,153,57,.15);
+/* GRID */
+.grid-wrapper{
+position:relative;
+padding:0 4%;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Poppins,sans-serif;background:#050505;color:#fff}
-.topbar{
-display:flex;justify-content:space-between;align-items:center;
-padding:18px 40px;background:#080808;border-bottom:1px solid rgba(255,223,0,.15)
+
+.grid{
+display:grid;
+grid-template-columns:repeat(5, 1fr);
+gap:16px;
+padding-bottom:60px;
 }
-.logo{width:90px;height:auto}
-.btn{
-padding:14px 28px;border-radius:14px;text-decoration:none;font-weight:700;
-background:linear-gradient(45deg,#009739,#FFDF00);color:#000;transition:.3s
-}
-.btn:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(255,223,0,.5)}
-.hero{
-padding:80px 20px;text-align:center;
-background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85))
-}
-.hero h1{
-font-family:Cinzel,serif;font-size:4rem;
-background:linear-gradient(90deg,#009739,#FFDF00,#002776);
--webkit-background-clip:text;-webkit-text-fill-color:transparent
-}
-.hero p{margin-top:15px;opacity:.8}
-.section{padding:50px 6%}
-.section h2{margin-bottom:25px;color:#FFDF00;font-family:Cinzel,serif}
-.carousel-wrap{display:flex;align-items:center;gap:12px}
-.arrow{
-width:48px;height:48px;border:none;border-radius:50%;
-background:linear-gradient(45deg,#009739,#FFDF00);
-font-size:20px;font-weight:bold;cursor:pointer
-}
-.track{
-display:flex;
-gap:20px;
-overflow-x:auto;
-scroll-behavior:smooth;
-scrollbar-width:none;
-flex:1;
-}
-.track::-webkit-scrollbar{display:none}
+
+/* RESPONSIVO */
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.grid{grid-template-columns:1fr}}
+
+/* CARD */
 .card{
-min-width:340px;
-max-width:340px;
-
-background:linear-gradient(
-180deg,
-#151515,
-#0b0b0b
-);
-
-border-radius:18px;
+background:#111;
+border-radius:14px;
 overflow:hidden;
-
 cursor:pointer;
-transition:.3s;
 
-border:1px solid rgba(255,223,0,.08);
+border:1px solid rgba(255,255,255,.05);
+transition:.35s;
 }
 
 .card:hover{
-
-transform:
-translateY(-6px)
-scale(1.02);
-
-box-shadow:
-0 0 20px rgba(0,153,57,.25),
-0 0 30px rgba(255,223,0,.10);
-
-border-color:
-rgba(255,223,0,.25);
-
+transform:scale(1.08);
+border-color:rgba(255,223,0,.25);
+box-shadow:0 20px 40px rgba(0,0,0,.6);
+z-index:2;
 }
-.card:hover{transform:translateY(-6px)}
+
 .thumb{position:relative}
-.thumb img{width:100%;height:220px;object-fit:cover;display:block}
+
+.thumb img{
+width:100%;
+height:140px;
+object-fit:cover;
+transition:.3s;
+}
+
+.card:hover img{
+transform:scale(1.1);
+filter:brightness(.6);
+}
+
 .play{
-position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-width:72px;height:72px;border-radius:50%;
-background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;
-font-size:28px;color:#FFDF00
-}
-.time{
-position:absolute;bottom:10px;right:10px;background:#000;
-padding:5px 10px;border-radius:8px;font-size:.8rem
-}
-.card h3{padding:16px;color:#FFDF00}
-.modal{
-display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);
-z-index:9999;align-items:center;justify-content:center;padding:20px
-}
-.modal-content{
-width:min(1400px,95vw);
-height:90vh;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:50px;
+height:50px;
+border-radius:50%;
+background:rgba(0,0,0,.6);
 display:flex;
 align-items:center;
 justify-content:center;
+color:#FFDF00;
+opacity:0;
+transition:.3s;
 }
 
-.modal video{
-max-width:100%;
-max-height:90vh;
-width:auto;
-height:auto;
-border-radius:18px;
-background:black;
-box-shadow:0 0 40px rgba(255,223,0,.15);
+.card:hover .play{opacity:1}
+
+.card h3{
+padding:12px;
+font-size:.9rem;
+color:#FFDF00;
+text-align:center;
 }
+
+/* ARROWS */
+.arrow{
+position:absolute;
+top:40%;
+transform:translateY(-50%);
+width:36px;
+height:36px;
+border:none;
+border-radius:50%;
+cursor:pointer;
+background:rgba(0,0,0,.4);
+color:#FFDF00;
+opacity:.4;
+transition:.3s;
+}
+
+.arrow:hover{
+opacity:1;
+background:rgba(255,223,0,.15);
+transform:translateY(-50%) scale(1.1);
+}
+
+.arrow.left{left:6px}
+.arrow.right{right:6px}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.92);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.modal-content{
+width:min(900px,95vw);
+aspect-ratio:16/9;
+}
+
+iframe{
+width:100%;
+height:100%;
+border-radius:12px;
+}
+
 .close{
-position:absolute;top:20px;right:25px;font-size:42px;cursor:pointer
+position:absolute;
+top:20px;
+right:25px;
+font-size:40px;
+cursor:pointer;
+color:#fff;
 }
-footer{text-align:center;padding:30px;border-top:1px solid rgba(255,223,0,.1)}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:25px;
+opacity:.6;
+}
+
+/* HIDE */
+.hide{display:none !important}
+
 </style>
 </head>
+
 <body>
 
 <header class="topbar">
-<a href="index.html"><img src="public/Made.png" class="logo"></a>
-<a href="index.html" class="btn">Voltar</a>
+<a href="index.html" class="btn">← Voltar</a>
 </header>
 
 <section class="hero">
 <h1>Biblioteca de Vídeos</h1>
-<p>Tutoriais, MVPs, WoE e conteúdos exclusivos da Made in Brazil.</p>
+<p>Tutoriais, MVPs, WoE e conteúdos da guilda</p>
 </section>
 
-<section class="section">
-<h2>🎥 Conteúdo da Guilda</h2>
+<div class="categories">
+<div class="cat active" onclick="filter('all',this)">Todos</div>
+<div class="cat" onclick="filter('woe',this)">WoE</div>
+<div class="cat" onclick="filter('mvp',this)">MVP</div>
+<div class="cat" onclick="filter('build',this)">Builds</div>
+</div>
+
 <div class="search-box">
-
-<input
-type="text"
-id="searchVideos"
-placeholder="Pesquisar vídeos..."
-onkeyup="searchVideos()">
-
-</div>
-<div class="carousel-wrap">
-<button class="arrow" onclick="track.scrollBy({left:-500,behavior:'smooth'})">❮</button>
-
-<div class="track" id="track">
-
-<div class="card" onclick="window.open('LINK_DO_YOUTUBE', '_blank')"><div class="thumb">
-<img src="thumbs/video1.png">
-<div class="play">▶</div>
-</div>
-<h3>Guia Completo de WoE</h3>
+<input type="text" id="searchVideos" placeholder="Pesquisar vídeos..." onkeyup="searchVideos()">
 </div>
 
-<div class="card" onclick="window.open('LINK_DO_YOUTUBE', '_blank')"><div class="thumb">
-<img src="thumbs/video2.png">
-<div class="play">▶</div>
+<div class="grid-wrapper">
+
+<button class="arrow left" onclick="scrollGrid(-400)">‹</button>
+
+<div class="grid" id="grid">
+
+<div class="card" data-cat="woe" onclick="openVideo('dQw4w9WgXcQ')">
+<div class="thumb"><img src="thumbs/video1.png"><div class="play">▶</div></div>
+<h3>Guia WoE</h3>
 </div>
+
+<div class="card" data-cat="mvp" onclick="openVideo('dQw4w9WgXcQ')">
+<div class="thumb"><img src="thumbs/video2.png"><div class="play">▶</div></div>
 <h3>MVP Thanatos</h3>
 </div>
 
-<div class="card" onclick="window.open('LINK_DO_YOUTUBE', '_blank')"><div class="thumb">
-<img src="thumbs/video3.png">
-<div class="play">▶</div>
-</div>
+<div class="card" data-cat="build" onclick="openVideo('dQw4w9WgXcQ')">
+<div class="thumb"><img src="thumbs/video3.png"><div class="play">▶</div></div>
 <h3>Build Arcebispo</h3>
 </div>
 
-<div class="card" onclick="window.open('LINK_DO_YOUTUBE', '_blank')"><div class="thumb">
-<img src="thumbs/video4.png">
-<div class="play">▶</div>
+<div class="card" data-cat="build" onclick="openVideo('dQw4w9WgXcQ')">
+<div class="thumb"><img src="thumbs/video4.png"><div class="play">▶</div></div>
+<h3>Equipamentos</h3>
 </div>
-<h3>Progressão de Equipamentos</h3>
+
+<div class="card" data-cat="mvp" onclick="openVideo('dQw4w9WgXcQ')">
+<div class="thumb"><img src="thumbs/video1.png"><div class="play">▶</div></div>
+<h3>Outro Vídeo</h3>
 </div>
 
 </div>
 
-<button class="arrow" onclick="track.scrollBy({left:500,behavior:'smooth'})">❯</button>
+<button class="arrow right" onclick="scrollGrid(400)">›</button>
+
 </div>
-</section>
 
 <div class="modal" id="modal">
 <span class="close" onclick="closeVideo()">×</span>
 <div class="modal-content">
-<video id="player" controls autoplay>
-<source src="">
-</video>
+<iframe id="player" src="" allowfullscreen></iframe>
 </div>
 </div>
 
-<footer>© 2026 Guild Made in Brazil • Ragnarok X Next Generation</footer>
+<footer>© 2026 Made in Brazil</footer>
 
 <script>
-const modal=document.getElementById('modal');
-const player=document.getElementById('player');
 
-function openVideo(src){
- player.src=src;
- modal.style.display='flex';
- player.play();
+const modal=document.getElementById("modal");
+const player=document.getElementById("player");
+const grid=document.getElementById("grid");
+
+function openVideo(id){
+player.src="https://www.youtube.com/embed/"+id;
+modal.style.display="flex";
 }
 
 function closeVideo(){
- player.pause();
- player.src='';
- modal.style.display='none';
+player.src="";
+modal.style.display="none";
 }
 
-modal.addEventListener('click',e=>{
- if(e.target===modal) closeVideo();
+modal.addEventListener("click",e=>{
+if(e.target===modal) closeVideo();
 });
+
+function scrollGrid(amount){
+grid.scrollBy({left:amount,behavior:"smooth"});
+}
+
 function searchVideos(){
-
-const value =
-document
-.getElementById("searchVideos")
-.value
-.toLowerCase();
-
-const cards =
-document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-
-const title =
-card.querySelector("h3")
-.textContent
-.toLowerCase();
-
-card.style.display =
-title.includes(value)
-? "block"
-: "none";
-
+const value=document.getElementById("searchVideos").value.toLowerCase();
+document.querySelectorAll(".card").forEach(card=>{
+const title=card.querySelector("h3").textContent.toLowerCase();
+card.classList.toggle("hide", !title.includes(value));
 });
-
 }
+
+function filter(cat,el){
+document.querySelectorAll(".cat").forEach(c=>c.classList.remove("active"));
+el.classList.add("active");
+
+document.querySelectorAll(".card").forEach(card=>{
+card.classList.toggle("hide", cat!=='all' && card.dataset.cat!==cat);
+});
+}
+
 </script>
 
 </body>
